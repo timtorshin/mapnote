@@ -17,3 +17,21 @@
 <p appAttribute [value]="attribute">this is an attribute directive</p>
 <br/>
 <button (click)="onClick()">Change Attribute</button>
+<br/>
+<br/>
+<div *ngIf="isInitial; else isFormatted">
+  <h4>Without formatting:</h4>
+  <br/>
+  <p>{{ number }}</p>
+  <p>{{ number }}</p>
+</div>
+<ng-template #isFormatted>
+  <div>
+    <h4>With formatting:</h4>
+    <br/>
+    <p>{{ number | numberFormat:'ru-RU' }} - RU</p>
+    <p>{{ number | numberFormat:'en-US' }} - US</p>
+  </div>
+</ng-template>
+<br/>
+<button (click)="onFormatChange()">Change Number Format</button>
