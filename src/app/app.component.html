@@ -1,3 +1,32 @@
+<form [formGroup]="productForm">
+  <div class="field">
+    <label for="id">ID</label>
+    <input id="id" type="text" formControlName="id"/>
+    <button type="button" (click)="onGenerateId()">Generate ID</button>
+  </div>
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name"/>
+  </div>
+  <div class="field">
+    <label for="price">Price</label>
+    <input id="price" type="number" formControlName="price"/>
+  </div>
+  <div class="field">
+    <label for="categories">Categories</label>
+    <select formControlName="categories" multiple>
+      <option value="shoes">Shoes</option>
+      <option value="clothes">Clothes</option>
+      <option value="medicines">Medicines</option>
+      <option value="food">Food</option>
+      <option value="electronics">Electronics</option>
+    </select>
+  </div>
+  <div class="field">
+    <button type="button" (click)="onSubmit()">Submit</button>
+  </div>
+</form>
+<br/>
 <app-card
   name="John Doe"
   number="1234 5678 9012 3456"
