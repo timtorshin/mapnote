@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TimerService } from './timer.service';
 import uniqid from 'uniqid';
 
 @Component({
@@ -7,13 +8,16 @@ import uniqid from 'uniqid';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  constructor(private timerService: TimerService) {}
+  
   public productForm: FormGroup = new FormGroup({
     id: new FormControl(uniqid()),
     name: new FormControl(),
     price: new FormControl(null, [Validators.required, Validators.min(1)]),
     categories: new FormControl([], Validators.required)
   });
+
   public attribute = { id: 'text' };
   public number: number = 24637423.123;
   public isInitial: boolean = true;
@@ -43,5 +47,9 @@ export class AppComponent {
     if (this.number !== 24637423.12) {
       this.isInitial = !this.isInitial;
     }
+  }
+
+  public ngAfterViewInit() {
+    this.timerService.start();
   }
 }
