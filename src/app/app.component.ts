@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
+import { TimerService } from './timer.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  constructor(private timerService: TimerService) {}
+
   public attribute = { id: 'text' };
   public number: number = 24637423.123;
   public isInitial: boolean = true;
@@ -22,5 +25,9 @@ export class AppComponent {
     if (this.number !== 24637423.12) {
       this.isInitial = !this.isInitial;
     }
+  }
+
+  public ngAfterViewInit() {
+    this.timerService.start();
   }
 }
